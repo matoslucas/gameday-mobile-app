@@ -22,7 +22,7 @@ const LabWorksScreen = () => {
         <View key={index}>
           <TouchableOpacity onPress={() => toggleSection(index)} style={styles.header}>
             <View style={styles.headerContent}>
-              <FontAwesome5 name="clipboard-list" size={20} color="#FFFFFF" style={styles.icon} />
+              <FontAwesome5 name="file-medical" size={20} color="#FFFFFF" style={styles.icon} />
               <Text style={styles.headerText}>Date Collected: {section.date}</Text>
             </View>
             <Icon
