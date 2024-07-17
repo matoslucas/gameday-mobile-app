@@ -1,14 +1,15 @@
 import * as React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import { DataTable } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import scanData from '../assets/scanData.json'; // Import the JSON file
+import scanData from '../assets/scanData.json';
+import { LineChart } from 'react-native-chart-kit';
 
 const BodyScansScreen = () => {
   const [activeSections, setActiveSections] = React.useState([]);
-
+  
   const toggleSection = (index) => {
     const isActive = activeSections.includes(index);
     setActiveSections((prevSections) =>
@@ -17,7 +18,7 @@ const BodyScansScreen = () => {
   };
 
   const formatDate = (timestamp) => {
-    const date = new Date(timestamp * 1000); // Convert timestamp to milliseconds
+    const date = new Date(timestamp * 1000);
     return date.toLocaleDateString();
   };
 
@@ -29,10 +30,69 @@ const BodyScansScreen = () => {
     );
   }
 
+  const chartData = {
+    labels: scanData.slice(0, 5).map((section) => formatDate(section.received_date)),
+    datasets: [
+      {
+        data: scanData.slice(0, 5).map((section) => section.weight),
+        color: () => 'rgba(255, 99, 132, 1)', // Red
+        strokeWidth: 2,
+        label: 'Weight',
+      },
+      {
+        data: scanData.slice(0, 5).map((section) => section.lbm_quantity),
+        color: () => 'rgba(54, 162, 235, 1)', // Blue
+        strokeWidth: 2,
+        label: 'Lean Body Mass',
+      },
+      {
+        data: scanData.slice(0, 5).map((section) => section.bone_slim),
+        color: () => 'rgba(75, 192, 192, 1)', // Aqua
+        strokeWidth: 2,
+        label: 'Skeletal Muscle Mass',
+      },
+      {
+        data: scanData.slice(0, 5).map((section) => section.mbf_quantity),
+        color: () => 'rgba(255, 205, 86, 1)', // Yellow
+        strokeWidth: 2,
+        label: 'Fat Mass',
+      },
+    ],
+    legend: ['Weight', 'Lean M', 'Skeletal M', 'Fat Mass'],
+  };
 
   return (
     <ScrollView style={styles.container}>
-      {scanData.map((section, index) => (
+      <Text style={styles.chartTitle}>Progress</Text>
+      <LineChart
+        data={chartData}
+        width={Dimensions.get('window').width - 32}
+        height={220}
+        chartConfig={{
+          backgroundColor: '#fff',
+          backgroundGradientFrom: '#fff',
+          backgroundGradientTo: '#fff',
+          decimalPlaces: 1,
+          color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+          labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+          style: {
+            borderRadius: 16,
+          },
+          propsForDots: {
+            r: '6',
+            strokeWidth: '2',
+            stroke: '#fff',
+          },
+        }}
+        style={{
+          marginVertical: 8,
+          borderRadius: 16,
+        }}
+        bezier
+        withLegend
+      />
+
+      {scanData.slice(0, 5).map((section, index) => (
         <View key={index}>
           <TouchableOpacity onPress={() => toggleSection(index)} style={styles.header}>
             <View style={styles.headerContent}>
@@ -103,6 +163,12 @@ const styles = StyleSheet.create({
     color: 'red',
     textAlign: 'center',
     marginTop: 20,
+  },
+  chartTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 16,
   },
 });
 
