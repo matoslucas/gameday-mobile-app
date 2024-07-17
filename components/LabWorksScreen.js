@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-nati
 import Collapsible from 'react-native-collapsible';
 import { DataTable } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import labWorkData from '../assets/labWorkData.json'; // Import the JSON file
 
 const LabWorksScreen = () => {
@@ -20,7 +21,10 @@ const LabWorksScreen = () => {
       {labWorkData.map((section, index) => (
         <View key={index}>
           <TouchableOpacity onPress={() => toggleSection(index)} style={styles.header}>
-            <Text style={styles.headerText}>Date Collected: {section.date}</Text>
+            <View style={styles.headerContent}>
+              <FontAwesome5 name="clipboard-list" size={20} color="#FFFFFF" style={styles.icon} />
+              <Text style={styles.headerText}>Date Collected: {section.date}</Text>
+            </View>
             <Icon
               name={activeSections.includes(index) ? 'expand-less' : 'expand-more'}
               size={24}
@@ -61,6 +65,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#D32F2F',
     borderRadius: 5,
     marginBottom: 5,
+  },
+  headerContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  icon: {
+    marginRight: 10,
   },
   headerText: {
     color: '#FFFFFF',
