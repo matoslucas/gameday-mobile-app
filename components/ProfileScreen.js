@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { ScrollView, Text, StyleSheet, View, Image, TouchableOpacity } from 'react-native';
-import { Avatar, Button } from 'react-native-paper';
+import { ScrollView, Text, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { Avatar } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
 
 const ProfileScreen = () => {
-  const [avatar, setAvatar] = React.useState('https://via.placeholder.com/150');
+  const [avatar, setAvatar] = React.useState(require('../assets/IMG_Tears_20210227_224009_processed.jpg'));
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -16,7 +16,7 @@ const ProfileScreen = () => {
     });
 
     if (!result.canceled) {
-      setAvatar(result.assets[0].uri);
+      setAvatar({ uri: result.assets[0].uri });
     }
   };
 
@@ -26,7 +26,7 @@ const ProfileScreen = () => {
         <TouchableOpacity onPress={pickImage}>
           <Avatar.Image 
             size={100} 
-            source={{ uri: avatar }} 
+            source={avatar} 
           />
         </TouchableOpacity>
         <Text style={styles.name}>John Doe</Text>
