@@ -24,14 +24,10 @@ const BottomTabs = () => {
 
           return <MaterialCommunityIcons name={iconName} color={color} size={size} />;
         },
+        tabBarActiveTintColor: '#D32F2F',
+        tabBarInactiveTintColor: '#333333',
+        
       })}
-      tabBarOptions={{
-        activeTintColor:  '#D32F2F',
-        inactiveTintColor: '#333333',
-        style: {
-          backgroundColor: '#D32F2F',
-        },
-      }}
     >
       <BottomTab.Screen name="Profile" component={ProfileScreen} />
       <BottomTab.Screen name="Lab Works" component={LabWorksScreen} />

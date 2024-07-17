@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Appbar, Provider as PaperProvider } from 'react-native-paper';
-import { SafeAreaView, Image, StyleSheet, View } from 'react-native';
+import { SafeAreaView, Image, StyleSheet, View, StatusBar, Platform } from 'react-native';
 import BottomTabs from './components/BottomTabs';
 
 const logo = { uri: 'https://gamedaymenshealth.com/wp-content/uploads/2022/03/GDMH_Vector-Logo_WHITE.webp' };
@@ -10,7 +10,8 @@ export default function App() {
   return (
     <PaperProvider>
       <NavigationContainer>
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#D32F2F', paddingBottom: 2, paddingTop: Platform.OS === 'android' ? 4 : 0 }}>
+          <StatusBar backgroundColor="#D32F2F" barStyle="light-content" />
           <Appbar.Header style={styles.appbar}>
             <View style={styles.headerContainer}>
               <Image source={logo} style={styles.logo} />
