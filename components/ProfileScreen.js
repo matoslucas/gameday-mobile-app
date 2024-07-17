@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { ScrollView, Text, StyleSheet, View, TouchableOpacity } from 'react-native';
-import { Avatar } from 'react-native-paper';
+import { Avatar, ActivityIndicator } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
 
+// Ensure the path to the image is correct
+const initialAvatar = require('../assets/IMG_Tears_20210227_224009_processed.jpg');
+
 const ProfileScreen = () => {
-  const [avatar, setAvatar] = React.useState(require('../assets/IMG_Tears_20210227_224009_processed.jpg'));
+  const [avatar, setAvatar] = React.useState(initialAvatar);
+  const [loading, setLoading] = React.useState(false);
 
   const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
@@ -16,18 +19,29 @@ const ProfileScreen = () => {
     });
 
     if (!result.canceled) {
+      setLoading(true);
       setAvatar({ uri: result.assets[0].uri });
     }
+  };
+
+  const handleImageLoad = () => {
+    setLoading(false);
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity onPress={pickImage}>
-          <Avatar.Image 
-            size={100} 
-            source={avatar} 
-          />
+          {loading ? (
+            <ActivityIndicator animating={true} size="large" />
+          ) : (
+            <Avatar.Image 
+              size={100} 
+              source={avatar} 
+              onLoad={handleImageLoad}
+              style={styles.avatar}
+            />
+          )}
         </TouchableOpacity>
         <Text style={styles.name}>John Doe</Text>
       </View>
@@ -61,6 +75,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 10,
     color: '#333333',
+  },
+  avatar: {
+    backgroundColor: 'transparent',
   },
 });
 
