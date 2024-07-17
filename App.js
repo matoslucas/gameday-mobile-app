@@ -10,7 +10,7 @@ export default function App() {
   return (
     <PaperProvider>
       <NavigationContainer>
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#D32F2F', paddingTop: Platform.OS === 'android' ? 4 : 0 }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#D32F2F', paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }}>
           <StatusBar backgroundColor="#D32F2F" barStyle="light-content" />
           <Appbar.Header style={styles.appbar}>
             <View style={styles.headerContainer}>
@@ -37,5 +37,6 @@ const styles = StyleSheet.create({
   logo: {
     width: 200,
     height: 59, // Adjusted height to maintain aspect ratio
+    marginBottom: 10, // Add space below the logo
   },
 });
