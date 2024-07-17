@@ -1,0 +1,60 @@
+[
+    {
+      "date": "11/29/2023",
+      "items": [
+        { "test": "Testosterone", "result": "596 ng/dL", "reference": "264-916 ng/dL" },
+        { "test": "Estradiol", "result": "12.2 pg/mL", "reference": "7.6-42.6 pg/mL" }
+      ]
+    },
+    {
+      "date": "10/30/2023",
+      "items": [
+        { "test": "Cholesterol, Total", "result": "189 mg/dL", "reference": "100-199 mg/dL" },
+        { "test": "Triglycerides", "result": "178 mg/dL", "reference": "0-149 mg/dL" },
+        { "test": "HDL Cholesterol", "result": "33 mg/dL", "reference": ">39 mg/dL" },
+        { "test": "LDL Chol Calc (NIH)", "result": "124 mg/dL", "reference": "0-99 mg/dL" },
+        { "test": "Hemoglobin A1c", "result": "5.8%", "reference": "4.8-5.6%" }
+      ]
+    },
+    {
+      "date": "08/16/2023",
+      "items": [
+        { "test": "Albumin", "result": "4.7 g/dL", "reference": "4.1-5.1 g/dL" },
+        { "test": "AST (SGOT)", "result": "24 IU/L", "reference": "0-40 IU/L" },
+        { "test": "ALT (SGPT)", "result": "30 IU/L", "reference": "0-44 IU/L" },
+        { "test": "Prostate Specific Ag", "result": "0.5 ng/mL", "reference": "0.0-4.0 ng/mL" },
+        { "test": "Testosterone", "result": "516 ng/dL", "reference": "264-916 ng/dL" },
+        { "test": "Estradiol", "result": "21.8 pg/mL", "reference": "7.6-42.6 pg/mL" }
+      ]
+    },
+    {
+      "date": "03/21/2023",
+      "items": [
+        { "test": "WBC", "result": "5.2 x10E3/uL", "reference": "3.4-10.8 x10E3/uL" },
+        { "test": "RBC", "result": "5.43 x10E6/uL", "reference": "4.14-5.80 x10E6/uL" },
+        { "test": "Hemoglobin", "result": "15.9 g/dL", "reference": "13.0-17.7 g/dL" },
+        { "test": "Hematocrit", "result": "47.4%", "reference": "37.5-51.0%" },
+        { "test": "Glucose", "result": "102 mg/dL", "reference": "70-99 mg/dL" },
+        { "test": "Cholesterol, Total", "result": "204 mg/dL", "reference": "100-199 mg/dL" },
+        { "test": "Triglycerides", "result": "210 mg/dL", "reference": "0-149 mg/dL" },
+        { "test": "HDL Cholesterol", "result": "28 mg/dL", "reference": ">39 mg/dL" },
+        { "test": "LDL Chol Calc (NIH)", "result": "138 mg/dL", "reference": "0-99 mg/dL" },
+        { "test": "Hemoglobin A1c", "result": "5.7%", "reference": "4.8-5.6%" },
+        { "test": "Testosterone", "result": "687 ng/dL", "reference": "264-916 ng/dL" }
+      ]
+    },
+    {
+      "date": "02/07/2023",
+      "items": [
+        { "test": "Albumin", "result": "4.5 g/dL", "reference": "4.0-5.0 g/dL" },
+        { "test": "TSH", "result": "3.770 uIU/mL", "reference": "0.450-4.500 uIU/mL" },
+        { "test": "Testosterone", "result": "696 ng/dL", "reference": "264-916 ng/dL" },
+        { "test": "Estradiol", "result": "26.7 pg/mL", "reference": "7.6-42.6 pg/mL" },
+        { "test": "WBC", "result": "4.6 x10E3/uL", "reference": "3.4-10.8 x10E3/uL" },
+        { "test": "RBC", "result": "5.74 x10E6/uL", "reference": "4.14-5.80 x10E6/uL" },
+        { "test": "Hemoglobin", "result": "16.9 g/dL", "reference": "13.0-17.7 g/dL" },
+        { "test": "Hematocrit", "result": "49.9%", "reference": "37.5-51.0%" }
+      ]
+    }
+  ]
+  
