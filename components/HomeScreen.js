@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import {
   ScrollView,
-  View,
-  Text,
-  Image,
   StyleSheet,
   ActivityIndicator,
 } from "react-native";
-import { Card, Title, Paragraph, Button } from "react-native-paper";
-import carouselData from "../assets/carouselData.json"; // Ensure the path is correct
+import { Avatar, Card, Title, Paragraph, Button } from "react-native-paper";
+import carouselData from "../assets/carouselData.json";
+import halloween from "../assets/enhanced_halloween.png"; // Ensure this path is correct
 
 const HomeScreen = () => {
   const [data, setData] = useState([]);
@@ -36,11 +34,21 @@ const HomeScreen = () => {
 
   return (
     <ScrollView style={styles.scrollView}>
-      {data.map((item) => (
+      {data.map((item, index) => (
         <Card key={item.id} style={styles.card}>
-          <Card.Cover source={{ uri: item.image }} style={styles.image} />
+          <Card.Cover
+            source={
+              index === 0 ? halloween : { uri: item.image }
+            } // Use enhanced Halloween image for the first card
+            style={styles.image}
+          />
+          <Card.Title
+            title={item.text}
+            left={(props) => <Avatar.Icon {...props} icon="city" />}
+          />
           <Card.Content style={styles.cardContent}>
-            <Title>{item.text}</Title>
+            <Title>{item.title}</Title>
+            <Paragraph>{item.description}</Paragraph>
           </Card.Content>
           <Card.Actions style={styles.cardActions}>
             <Button mode="contained" onPress={() => {}} style={styles.button} color="#6200ee">Share</Button>
