@@ -1,6 +1,14 @@
 [
-    { "id": "1", "text": "Halloween sale", "image": "https://via.placeholder.com/150" },
-    { "id": "2", "text": "Referral Rewards", "image": "https://via.placeholder.com/150" }
-    
-  ]
-  
+  {
+    "id": "1",
+    "text": "Halloween Promotion",
+    "image": "https://via.placeholder.com/150",
+    "des": "This Halloween, we are thrilled to announce our 'Treat, not Trick' promotional campaign, offering free consultations for all you brave souls ready to take control of your health. Fear not the myths and whispers that roam the dark corners of men’s wellness. "
+  },
+  {
+    "id": "2",
+    "text": "Referral Rewards",
+    "image": "https://via.placeholder.com/150",
+    "des": "We’re excited to announce our Referral Rewards Program! As our valued customer, you now have the opportunity to share the benefits of [Product/Service] with friends and loved ones and earn fantastic rewards for each successful referral"
+  }
+]
