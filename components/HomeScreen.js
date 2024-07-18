@@ -52,14 +52,13 @@ const HomeScreen = () => {
             <Paragraph>{item.des}</Paragraph>
           </Card.Content>
           <Card.Actions style={styles.cardActions}>
-            
             <Button
               mode="contained"
               onPress={() => {}}
               style={styles.button}
               color="#D32F2F"
             >
-              Get Dsicount
+              Get Discount
             </Button>
           </Card.Actions>
         </Card>
@@ -86,7 +85,7 @@ const styles = StyleSheet.create({
   },
   cardActions: {
     flexDirection: "row",
-    justifyContent: "space-around", // Spreads the buttons out evenly
+    justifyContent: "flex-end", // Aligns the button to the right
   },
   button: {
     width: "40%", // Button width to make them larger and more tappable
