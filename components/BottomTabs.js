@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons';  // Import icons from expo/vector-icons
-import ProfileScreen from './ProfileScreen';
+
+import HomeScreen from './HomeScreen';
 import LabWorksScreen from './LabWorksScreen';
 import BodyScansScreen from './BodyScansScreen';
+import ProfileScreen from './ProfileScreen';
+
 import MyHeader from './MyHeader'; 
 
 import { getTabBarIcon } from '../utils/Utils'; 
@@ -38,9 +41,10 @@ const BottomTabs = () => {
       
       })}
     >
-      <BottomTab.Screen name="Profile" component={ProfileScreen} />
+      <BottomTab.Screen name="Home" component={HomeScreen} />  
       <BottomTab.Screen name="Labs" component={LabWorksScreen} />
       <BottomTab.Screen name="Scans" component={BodyScansScreen} />
+      <BottomTab.Screen name="Profile" component={ProfileScreen} />
     </BottomTab.Navigator>
   );
 };

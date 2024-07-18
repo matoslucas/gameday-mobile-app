@@ -1,43 +1,22 @@
 import React from "react";
-import { FontAwesome6, MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome6, MaterialCommunityIcons, Octicons } from "@expo/vector-icons";
 
 export const getTabBarIcon = (routeName, color, size) => {
   const iconStyle = {
     marginTop: 5,
     marginBottom: 5,
   };
-  let iconName;
 
-  if (routeName === "Profile") {
-    iconName = "user";
-    return (
-      <FontAwesome6
-        name={iconName}
-        color={color}
-        size={size}
-        style={iconStyle}
-      />
-    );
-  } else if (routeName === "Labs") {
-    iconName = "test-tube";
-    return (
-      <MaterialCommunityIcons
-        name={iconName}
-        color={color}
-        size={size}
-        style={iconStyle}
-      />
-    );
-  } else if (routeName === "Scans") {
-    iconName = "chart-simple";
-    return (
-      <FontAwesome6
-        name={iconName}
-        color={color}
-        size={size}
-        style={iconStyle}
-      />
-    );
+  switch (routeName) {
+    case "Profile":
+      return <FontAwesome6 name="user" color={color} size={size} style={iconStyle} />;
+    case "Labs":
+      return <MaterialCommunityIcons name="test-tube" color={color} size={size} style={iconStyle} />;
+    case "Scans":
+      return <FontAwesome6 name="chart-simple" color={color} size={size} style={iconStyle} />;
+    case "Home":
+      return <Octicons name="home" color={color} size={size} style={iconStyle} />;
+    default:
+      return null;  // Default case to handle any other routes
   }
-  return null;
 };
