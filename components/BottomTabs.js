@@ -4,6 +4,9 @@ import { FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons';  // I
 import ProfileScreen from './ProfileScreen';
 import LabWorksScreen from './LabWorksScreen';
 import BodyScansScreen from './BodyScansScreen';
+import MyHeader from './MyHeader'; 
+
+import { getTabBarIcon } from '../utils/Utils'; 
 
 const BottomTab = createBottomTabNavigator();
 
@@ -12,25 +15,10 @@ const BottomTabs = () => {
     <BottomTab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
-          let iconName;
-          size = 30; // Set the size of the icons here
-
-          const iconStyle = {
-            marginTop: 5,
-            marginBottom: 5,
-          };
-
-          if (route.name === 'Profile') {
-            iconName = 'user';
-            return <FontAwesome6 name={iconName} color={color} size={size} style={iconStyle} />;
-          } else if (route.name === 'Labs') {
-            iconName = 'test-tube';
-            return <MaterialCommunityIcons name={iconName} color={color} size={size} style={iconStyle} />;
-          } else if (route.name === 'Scans') {
-            iconName = 'chart-simple';
-            return <FontAwesome6 name={iconName} color={color} size={size} style={iconStyle} />;
-          }
+         
+          return getTabBarIcon(route.name, color, size);
         },
+       
         tabBarActiveTintColor: '#D32F2F',
         tabBarInactiveTintColor: '#333333',
         tabBarStyle: {
@@ -42,6 +30,12 @@ const BottomTabs = () => {
         tabBarLabelStyle: {
           fontSize: 14,
         },
+
+        header: ({ navigation, route, options }) => {
+          
+          return <MyHeader title={route.name} style={options.headerStyle} />;
+        },
+      
       })}
     >
       <BottomTab.Screen name="Profile" component={ProfileScreen} />
