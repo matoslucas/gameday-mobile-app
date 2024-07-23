@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, StyleSheet, ActivityIndicator, View } from "react-native";
+import { ScrollView, StyleSheet, ActivityIndicator, View, Linking } from "react-native";
 import {
   Avatar,
   Card,
-  Title,
   Paragraph,
   Button,
-  Text,
   Dialog,
   Portal,
   Provider,
@@ -45,6 +43,10 @@ const HomeScreen = () => {
 
   const hideDialog = () => setVisible(false);
 
+  const openLink = (url) => {
+    Linking.openURL(url);
+  };
+
   if (isLoading) {
     return <ActivityIndicator size="large" color="#0000ff" />;
   }
@@ -72,7 +74,7 @@ const HomeScreen = () => {
                 mode="contained"
                 onPress={() => {
                   if (index === 0) {
-                    // Handle discount action
+                    openLink("https://www.target.com/c/halloween/-/N-5xt2o");
                   } else {
                     showDialog(`Reward QR Code for ${item.text}`);
                   }
