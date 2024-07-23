@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, StyleSheet, ActivityIndicator } from "react-native";
+import { ScrollView, StyleSheet, ActivityIndicator, View } from "react-native";
 import {
   Avatar,
   Card,
@@ -7,7 +7,11 @@ import {
   Paragraph,
   Button,
   Text,
+  Dialog,
+  Portal,
+  Provider,
 } from "react-native-paper";
+import QRCode from "react-native-qrcode-svg";
 import carouselData from "../assets/carouselData.json";
 import halloween from "../assets/enhanced_halloween.png";
 import men from "../assets/men.webp";
@@ -15,6 +19,8 @@ import men from "../assets/men.webp";
 const HomeScreen = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [visible, setVisible] = useState(false);
+  const [qrValue, setQrValue] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,38 +38,68 @@ const HomeScreen = () => {
     fetchData();
   }, []);
 
+  const showDialog = (value) => {
+    setQrValue(value);
+    setVisible(true);
+  };
+
+  const hideDialog = () => setVisible(false);
+
   if (isLoading) {
     return <ActivityIndicator size="large" color="#0000ff" />;
   }
 
   return (
-    <ScrollView style={styles.scrollView}>
-      {data.map((item, index) => (
-        <Card key={item.id} style={styles.card}>
-          <Card.Cover
-            source={index === 0 ? halloween : men} // Use enhanced Halloween image for the first card
-            style={styles.image}
-          />
-          <Card.Title
-            title={item.text}
-            left={(props) => <Avatar.Icon {...props} icon="sale" style={{ backgroundColor: '#D32F2F' }}  />}
-          />
-          <Card.Content style={styles.cardContent}>
-            <Paragraph>{item.des}</Paragraph>
-          </Card.Content>
-          <Card.Actions style={styles.cardActions}>
-            <Button
-              mode="contained"
-              onPress={() => {}}
-              style={styles.button}
-              color="#D32F2F"
-            >
-              Get Discount
-            </Button>
-          </Card.Actions>
-        </Card>
-      ))}
-    </ScrollView>
+    <Provider>
+      <ScrollView style={styles.scrollView}>
+        {data.map((item, index) => (
+          <Card key={item.id} style={styles.card}>
+            <Card.Cover
+              source={index === 0 ? halloween : men} // Use enhanced Halloween image for the first card
+              style={styles.image}
+            />
+            <Card.Title
+              title={item.text}
+              left={(props) => (
+                <Avatar.Icon {...props} icon="sale" style={{ backgroundColor: "#D32F2F" }} />
+              )}
+            />
+            <Card.Content style={styles.cardContent}>
+              <Paragraph>{item.des}</Paragraph>
+            </Card.Content>
+            <Card.Actions style={styles.cardActions}>
+              <Button
+                mode="contained"
+                onPress={() => {
+                  if (index === 0) {
+                    // Handle discount action
+                  } else {
+                    showDialog(`Reward QR Code for ${item.text}`);
+                  }
+                }}
+                style={styles.button}
+                color="#D32F2F"
+              >
+                {index === 0 ? `Get Discount` : `Get Rewards`}
+              </Button>
+            </Card.Actions>
+          </Card>
+        ))}
+      </ScrollView>
+      <Portal>
+        <Dialog visible={visible} onDismiss={hideDialog}>
+          <Dialog.Title>QR Code</Dialog.Title>
+          <Dialog.Content>
+            <View style={styles.qrCodeContainer}>
+              <QRCode value={qrValue} size={200} />
+            </View>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button onPress={hideDialog}>Close</Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Portal>
+    </Provider>
   );
 };
 
@@ -90,6 +126,11 @@ const styles = StyleSheet.create({
   button: {
     width: "40%", // Button width to make them larger and more tappable
     marginHorizontal: 5, // Adds horizontal space between buttons
+  },
+  qrCodeContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10,
   },
 });
 
